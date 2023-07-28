@@ -1,10 +1,12 @@
-function App() {
+import React from 'react';
+import Slider from './components/slider';
 
+const App = () => {
   return (
-    <>
-   <h1>Lorem ipsum dolor sit amx!</h1>
-    </>
-  )
-}
+    <div>
+      <Slider/>
+    </div>
+  );
+};
 
-export default App
+export default App;
