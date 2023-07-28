@@ -9,24 +9,32 @@ const slider = () => {
   const [sliderIndex, setsliderIndex] = useState(1);
 
   function toggleImage(indexPayload) {
-    let newState;
-    if (indexPayload + sliderIndex > sliderData.length) {
-      newState = 1;
-    } else if (indexPayload + sliderIndex < 1) {
-      newState = sliderData.length;
-    } else {
-      newState = indexPayload + sliderIndex;
-    }
-    setsliderIndex(newState)
-    console.log(sliderIndex);
+    // let newState;
+    // if (indexPayload + sliderIndex > sliderData.length) {
+    //   newState = 1;
+    // } else if (indexPayload + sliderIndex < 1) {
+    //   newState = sliderData.length;
+    // } else {
+    //   newState = indexPayload + sliderIndex;
+    // }
+    // setsliderIndex(newState);
+
+    setsliderIndex(state => {
+        if (indexPayload + state > sliderData.length) {
+            return 1
+        } else if(indexPayload + state < 1){
+            return sliderData.length
+        } else {
+            return state + indexPayload
+        }
+    })
   }
 
   useEffect(() => {
-    
-    const intervalId = setInterval(() => toggleImage(1), 2000)
+    const intervalId = setInterval(() => toggleImage(1), 2000);
 
-
-  }, [])
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <>
